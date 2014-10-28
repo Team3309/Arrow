@@ -1,17 +1,19 @@
 
 
-
+ /**
+    Summary of methods used:
+     double axis = Controller.getRawAxis(axisNumber); 
+     boolean button = Controller.getRawButton(buttonNumber);
+        Constants define these values in XboxControllerMap.java, so replace "buttonNumber" with "XboxControllerMap.BUTTON_A"
+    This Class is the main class for Xbox remotes, it pretty much just applies the Joystick class and makes it work with xbox remotes
+    The methods below are called in TeleopPeriodic inside the main robot class to see if buttons are presed or not. (Axes too)
+  **/
 public class XboxController extends GenericHID{
 
   //main instance joystick being called throughout class 
   Joystick Controller;
   
-  /**
-    Summary of methods used:
-     float axis = Controller.getRawAxis(axisNumber); //see table below for axis numbers
-     boolean button = Controller.getRawButton(buttonNumber);
-        Constants define these values in XboxControllerMap.java, so replace "buttonNumber" with "XboxControllerMap.BUTTON_A"
-  **/
+ 
   //info for usage of xbox remotes found at - http://www.chiefdelphi.com/forums/showthread.php?t=83597
   //Constructor, takes number and makes xbox remote that number joystick that is set by driver station
   public XboxController(int joystickNum) {
@@ -100,7 +102,7 @@ public class XboxController extends GenericHID{
      double scaledVal = scaleAxis(temp);
      return scaledVal;
   }
-  //not really sure what this return, I read somewhere that it returns rightTrigger - leftTrigger where each trigger returns from 0 to 1
+  //Not really sure what this return, I read somewhere that it returns rightTrigger - leftTrigger where each trigger returns from 0 to 1
   public double getTrigger() {
     double temp = Controller.getRawAxis(XboxControllerMap.AXIS_TRIGGER);
     double scaledVal = scaleAxis(temp);
