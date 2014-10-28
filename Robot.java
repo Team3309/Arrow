@@ -11,10 +11,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class Robot extends IterativeRobot {
+	
+	private Scheduler scheduler;
 
   //Runs when Robot is turned on
 	public void robotInit() {
-
+		scheduler = Scheduler.getInstance();
 	}
 
   //When first put into disabled mode
@@ -35,7 +37,7 @@ public class Robot extends IterativeRobot {
 	
 	//This function is called periodically during autonomous
 	public void autonomousPeriodic() {
-		
+		scheduler.run();
 	}
 
   //Init to Tele
@@ -46,6 +48,7 @@ public class Robot extends IterativeRobot {
 	
 	//This function is called periodically during operator control
 	public void teleopPeriodic() {
+		scheduler.run();
 		
 	}
 }
