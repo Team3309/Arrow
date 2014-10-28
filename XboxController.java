@@ -81,5 +81,56 @@ public class XboxController extends GenericHID{
   }
   
   
-}
+  //Next are the methods for getting the Axes, they return a double
+  //  You may notice that each method has a temp value and a scaledVal.  
+  //  The temp value is what that current axis is at.
+  //  The scaledVal just takes the temp value and scales it.
+  //  Chagne the scaleAxis method to add a deadband, or to add a constant multiplier to every axis.
+  
+  
+  //Returns from -1 to 1
+  public double getLeftX() {
+    double temp = Controller.getRawAxis(XboxControllerMap.AXIS_LEFT_X);
+    double scaledVal = scaleAxis(temp);
+    return scaledVal;
+  }
+  //Returns from -1 to 1
+  public double getLeftY() {
+     double temp = Controller.getRawAxis(XboxControllerMap.AXIS_LEFT_Y);
+     double scaledVal = scaleAxis(temp);
+     return scaledVal;
+  }
+  //not really sure what this return, I read somewhere that it returns rightTrigger - leftTrigger where each trigger returns from 0 to 1
+  public double getTrigger() {
+    double temp = Controller.getRawAxis(XboxControllerMap.AXIS_TRIGGER);
+    double scaledVal = scaleAxis(temp);
+    eturn scaledVal;
+  }
+  //Returns from -1 to 1
+  public double getRightX() {
+    double temp = Controller.getRawAxis(XboxControllerMap.AXIS_RIGHT_X);
+    double scaledVal = scaleAxis(temp);
+    return scaledVal;
+  }
+  //Returns from -1 to 1
+  public double getRightY() {
+     double temp = Controller.getRawAxis(XboxControllerMap.AXIS_RIGHT_Y);
+     double scaledVal = scaleAxis(temp);
+     return scaledVal;
+  }  
+  
+  //btw this is your deadband
+  static final double DEADBAND = .1;
+  
+  //here is the scaling method used in axes
+  private double scaleAxes(double value) {
+    //if the joystick is not pressed enough, don't move.  We dont like crawling spider robots.
+    if(Math.abs(value) < DEADBAND) {
+      return 0;
+    } 
+    //this spot would be where you could scale stuff
+    return value;
+  }
+  
+}//END OF CLASS
   
